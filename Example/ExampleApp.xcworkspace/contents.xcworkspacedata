@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:ExampleApp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../FBMemoryProfiler.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../Carthage/Checkouts/FBRetainCycleDetector/FBRetainCycleDetector.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../Carthage/Checkouts/FBAllocationTracker/FBAllocationTracker.xcodeproj">
+   </FileRef>
+</Workspace>
