@@ -31,7 +31,7 @@ To your podspec add:
 
     pod 'FBMemoryProfiler'
 
-You'll be able to use `FBMemoryProfiler` fully only in `Debug` builds. This is controlled by [compilation flag](https://github.com/facebook/FBMemoryProfiler/blob/master/FBMemoryProfiler/FBMemoryProfiler.h#L29) that can be provided to the build to make it work in other configurations.
+You'll be able to use `FBMemoryProfiler` fully only in `Debug` builds. This is controlled by [compilation flag](FBMemoryProfiler/FBMemoryProfiler.h#L29) that can be provided to the build to make it work in other configurations.
 
 ## Usage
 
@@ -69,7 +69,7 @@ _memoryProfiler = [[FBMemoryProfiler alloc] initWithPlugins:@[[IncredibleCacheCl
 
 ## Plugins
 
-Plugins are objects that conform to [FBMemoryProfilerPluggable](FBMemoryProfiler/Options/FBMemoryProfilerPluggable.h) protocol. Example usage: [custom cache cleaners](FBMemoryProfiler/Example/ExampleApp/CacheCleanerPlugin.h), [loggers that log data to server](https://github.com/facebook/FBMemoryProfiler/blob/master/Example/ExampleApp/RetainCycleLoggerPlugin.h).
+Plugins are objects that conform to [FBMemoryProfilerPluggable](FBMemoryProfiler/Options/FBMemoryProfilerPluggable.h) protocol. Example usage: [custom cache cleaners](Example/ExampleApp/CacheCleanerPlugin.h), [loggers that log data to server](Example/ExampleApp/RetainCycleLoggerPlugin.h).
 
 ## Contributing
 See the [CONTRIBUTING](CONTRIBUTING) file for how to help out.
