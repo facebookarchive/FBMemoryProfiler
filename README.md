@@ -1,4 +1,7 @@
 # FBMemoryProfiler
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![CocoaPods](https://img.shields.io/cocoapods/v/FBMemoryProfiler.svg?maxAge=2592000)]()
+
 
 An iOS library providing developer tools for browsing objects in memory over time, using [FBAllocationTracker](https://github.com/facebook/FBAllocationTracker) and [FBRetainCycleDetector](https://github.com/facebook/FBRetainCycleDetector).
 
