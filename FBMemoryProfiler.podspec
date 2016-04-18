@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/facebook/FBMemoryProfiler"
   s.license      = "BSD"
   s.author       = { "Grzegorz Pstrucha" => "gricha@fb.com" }
-  s.platform     = :ios, "8.0"
+  s.platform     = :ios, "7.0"
   s.source       = {
     :git => "https://github.com/facebook/FBMemoryProfiler.git",
     :tag => "0.1.1"
