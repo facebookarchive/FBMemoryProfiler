@@ -75,4 +75,4 @@ _memoryProfiler = [[FBMemoryProfiler alloc] initWithPlugins:@[[IncredibleCacheCl
 Plugins are objects that conform to [FBMemoryProfilerPluggable](FBMemoryProfiler/Options/FBMemoryProfilerPluggable.h) protocol. Example usage: [custom cache cleaners](Example/ExampleApp/CacheCleanerPlugin.h), [loggers that log data to server](Example/ExampleApp/RetainCycleLoggerPlugin.h).
 
 ## Contributing
-See the [CONTRIBUTING](CONTRIBUTING) file for how to help out.
+See the [CONTRIBUTING](https://github.com/facebook/FBMemoryProfiler/blob/master/CONTRIBUTING.md) file for how to help out.
