@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "FBMemoryProfiler"
-  s.version      = "0.1.1"
+  s.version      = "0.1.2"
   s.summary      = "iOS tool that helps with profiling iOS Memory usage"
   s.homepage     = "https://github.com/facebook/FBMemoryProfiler"
   s.license      = "BSD"
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "7.0"
   s.source       = {
     :git => "https://github.com/facebook/FBMemoryProfiler.git",
-    :tag => "0.1.1"
+    :tag => "0.1.2"
   }
   s.source_files  = "FBMemoryProfiler", "FBMemoryProfiler/**/*.{h,m,mm,c}"
 
