@@ -182,7 +182,7 @@ static UIColor *FBMemoryProfilerPaleRedColor() {
       return NO;
     }
 
-    if (entry.aliveObjects > 0) {
+    if (entry.aliveObjects > 0 && entry.className) {
       return YES;
     }
 
