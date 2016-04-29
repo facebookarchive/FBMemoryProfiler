@@ -55,8 +55,13 @@ int main(int argc, char * argv[]) {
 To enable memory profiler:
 
 ```objc
+#import <FBMemoryProfiler/FBMemoryProfiler.h>
+
+...
 FBMemoryProfiler *memoryProfiler = [FBMemoryProfiler new];
 [memoryProfiler enable];
+...
+
 ```
 
 `FBMemoryProfiler` will show up as a button on the screen. Once tapped, it will open memory profiler in full size mode.
