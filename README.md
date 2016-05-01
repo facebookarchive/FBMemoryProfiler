@@ -57,6 +57,9 @@ To enable memory profiler:
 ```objc
 FBMemoryProfiler *memoryProfiler = [FBMemoryProfiler new];
 [memoryProfiler enable];
+
+// Store memory profiler somewhere to extend it's lifetime
+_memoryProfiler = memoryProfiler;
 ```
 
 `FBMemoryProfiler` will show up as a button on the screen. Once tapped, it will open memory profiler in full size mode.
