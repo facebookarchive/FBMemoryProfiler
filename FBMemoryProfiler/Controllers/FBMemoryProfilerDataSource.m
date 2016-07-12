@@ -178,7 +178,7 @@ static UIColor *FBMemoryProfilerPaleRedColor() {
   NSArray *filtered = [_data[index] filteredArrayUsingPredicate:
                        [NSPredicate predicateWithBlock:^BOOL(FBAllocationTrackerSummary *entry, NSDictionary *bindings) {
     NSString *className = entry.className.lowercaseString;
-    if (_classFilter && [className rangeOfString:_classFilter].location == NSNotFound) {
+    if (self->_classFilter && [className rangeOfString:self->_classFilter].location == NSNotFound) {
       return NO;
     }
 
@@ -202,9 +202,9 @@ static UIColor *FBMemoryProfilerPaleRedColor() {
         NSUInteger size1 = obj1.aliveObjects * obj1.instanceSize;
         NSUInteger size2 = obj2.aliveObjects * obj2.instanceSize;
         if (size1 > size2) {
-          return (_sortingOrder == FBMemoryProfilerSortingOrderAscending) ? NSOrderedDescending : NSOrderedAscending;
+          return (self->_sortingOrder == FBMemoryProfilerSortingOrderAscending) ? NSOrderedDescending : NSOrderedAscending;
         } else if (size2 > size1) {
-          return (_sortingOrder == FBMemoryProfilerSortingOrderAscending) ? NSOrderedAscending : NSOrderedDescending;
+          return (self->_sortingOrder == FBMemoryProfilerSortingOrderAscending) ? NSOrderedAscending : NSOrderedDescending;
         } else {
           return NSOrderedSame;
         }

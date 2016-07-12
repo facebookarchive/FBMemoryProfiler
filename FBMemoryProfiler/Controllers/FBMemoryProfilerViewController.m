@@ -264,7 +264,7 @@ retainCycleDetectorConfiguration:(FBObjectGraphConfiguration *)retainCycleDetect
       Class aCls = NSClassFromString(className);
       NSArray *objects = [[FBAllocationTrackerManager sharedManager] instancesForClass:aCls
                                                                           inGeneration:generationIndex];
-      FBObjectGraphConfiguration *configuration = _retainCycleDetectorConfiguration ?: [FBObjectGraphConfiguration new];
+      FBObjectGraphConfiguration *configuration = self->_retainCycleDetectorConfiguration ?: [FBObjectGraphConfiguration new];
       FBRetainCycleDetector *detector = [[FBRetainCycleDetector alloc] initWithConfiguration:configuration];
       
       for (id object in objects) {
@@ -274,7 +274,7 @@ retainCycleDetectorConfiguration:(FBObjectGraphConfiguration *)retainCycleDetect
       NSSet<NSArray<FBObjectiveCGraphElement *> *> *retainCycles =
       [detector findRetainCyclesWithMaxCycleLength:8];
 
-      for (id<FBMemoryProfilerPluggable> plugin in _profilerOptions.plugins) {
+      for (id<FBMemoryProfilerPluggable> plugin in self->_profilerOptions.plugins) {
         if ([plugin respondsToSelector:@selector(memoryProfilerDidFindRetainCycles:)]) {
           [plugin memoryProfilerDidFindRetainCycles:retainCycles];
         }
@@ -283,18 +283,18 @@ retainCycleDetectorConfiguration:(FBObjectGraphConfiguration *)retainCycleDetect
       dispatch_async(dispatch_get_main_queue(), ^{
         if ([retainCycles count] > 0) {
           // We've got a leak
-          [_analysisCache updateAnalysisStatus:FBRetainCyclePresent
+          [self->_analysisCache updateAnalysisStatus:FBRetainCyclePresent
                                forInGeneration:generationIndex
                                  forClassNamed:className];
           if (presentDetails) {
-            [_retainCyclePresenter presentRetainCycles:retainCycles];
+            [self->_retainCyclePresenter presentRetainCycles:retainCycles];
           }
         } else {
-          [_analysisCache updateAnalysisStatus:FBRetainCycleNotPresent
+          [self->_analysisCache updateAnalysisStatus:FBRetainCycleNotPresent
                                forInGeneration:generationIndex
                                  forClassNamed:className];
         }
-        [_profilerView.tableView reloadData];
+        [self->_profilerView.tableView reloadData];
       });
     }
   });

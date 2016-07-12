@@ -200,7 +200,7 @@
 
   [UIView animateWithDuration:0.3
                    animations:^{
-                     _presentedViewController.view.frame = newFrame;
+                     self->_presentedViewController.view.frame = newFrame;
                    }];
 }
 
@@ -261,7 +261,7 @@
   CGRect frame = CGRectMake(widthOffset, heightOffset, adjustedSize.width, adjustedSize.height);
 
   [UIView animateWithDuration:duration animations:^{
-    _presentedViewController.view.frame = frame;
+    self->_presentedViewController.view.frame = frame;
   }];
 
 }
