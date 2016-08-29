@@ -71,7 +71,7 @@ We can also define plugins (check below) and [filters for retain cycle detector]
 ```objc
 _memoryProfiler = [[FBMemoryProfiler alloc] initWithPlugins:@[[IncredibleCacheCleaningPlugin new],
                                                               [AwesomeLoggerPlugin new]]
-                           retainCycleDetectorConfiguration:someConfigurationWithCustomFilters;
+                           retainCycleDetectorConfiguration:someConfigurationWithCustomFilters];
 [_memoryProfiler enable];
 ```
 
