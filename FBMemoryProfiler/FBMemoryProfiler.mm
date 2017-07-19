@@ -31,9 +31,9 @@ static const CGFloat KFBMemoryProfilerDesignatedHeight = 230;
 {
   FBMemoryProfilerViewController *_profilerViewController;
   FBMemoryProfilerFloatingButtonController *_floatingButtonController;
-
+  
   FBMemoryProfilerContainerViewController *_containerViewController;
-
+  
   FBMemoryProfilerOptions *_options;
   FBObjectGraphConfiguration *_retainCycleDetectorConfiguration;
 }
@@ -54,7 +54,7 @@ retainCycleDetectorConfiguration:(FBObjectGraphConfiguration *)retainCycleDetect
                                                             plugins:plugins];
     _retainCycleDetectorConfiguration = retainCycleDetectorConfiguration;
   }
-
+  
   return self;
 }
 
@@ -64,18 +64,18 @@ retainCycleDetectorConfiguration:(FBObjectGraphConfiguration *)retainCycleDetect
 {
   // Put Memory profiler in status bar but save window for future reference when showing on screen
   _enabled = YES;
-
+  
   [[FBAllocationTrackerManager sharedManager] enableGenerations];
-
+  
   _containerViewController = [FBMemoryProfilerContainerViewController new];
-
+  
   _memoryProfilerWindow = [[FBMemoryProfilerWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   _memoryProfilerWindow.touchesDelegate = self;
   _memoryProfilerWindow.rootViewController = _containerViewController;
   _memoryProfilerWindow.hidden = NO;
-
+  
   self.presentationMode = FBMemoryProfilerPresentationModeCondensed;
-
+  
   [_options.plugins enumerateObjectsUsingBlock:^(id<FBMemoryProfilerPluggable> plugin,
                                                  NSUInteger idx,
                                                  BOOL *stop) {
@@ -94,7 +94,7 @@ retainCycleDetectorConfiguration:(FBObjectGraphConfiguration *)retainCycleDetect
       [plugin memoryProfilerDidDisable];
     }
   }];
-
+  
   self.presentationMode = FBMemoryProfilerPresentationModeDisabled;
   _memoryProfilerWindow = nil;
   [[FBAllocationTrackerManager sharedManager] disableGenerations];
@@ -109,7 +109,7 @@ retainCycleDetectorConfiguration:(FBObjectGraphConfiguration *)retainCycleDetect
     // Breaks cycle
     [_profilerViewController.view removeFromSuperview];
   }
-
+  
   _profilerViewController = [[FBMemoryProfilerViewController alloc] initWithOptions:_options
                                                    retainCycleDetectorConfiguration:_retainCycleDetectorConfiguration];
   _profilerViewController.presentationModeDelegate = self;
@@ -123,7 +123,7 @@ retainCycleDetectorConfiguration:(FBObjectGraphConfiguration *)retainCycleDetect
   if (_profilerViewController) {
     _options = _profilerViewController.profilerOptions;
   }
-
+  
   [_containerViewController dismissCurrentViewController];
   _profilerViewController = nil;
 }
@@ -146,7 +146,7 @@ retainCycleDetectorConfiguration:(FBObjectGraphConfiguration *)retainCycleDetect
         break;
     }
   }
-
+  
   _presentationMode = presentationMode;
 }
 
@@ -156,7 +156,7 @@ retainCycleDetectorConfiguration:(FBObjectGraphConfiguration *)retainCycleDetect
 {
   _floatingButtonController = [FBMemoryProfilerFloatingButtonController new];
   _floatingButtonController.presentationModeDelegate = self;
-
+  
   [_containerViewController presentViewController:_floatingButtonController
                                          withSize:CGSizeMake(kFBFloatingButtonSize,
                                                              kFBFloatingButtonSize)];
