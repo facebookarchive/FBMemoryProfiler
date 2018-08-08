@@ -12,6 +12,16 @@
 #import "FBMemoryProfilerMathUtils.h"
 #import "FBMemoryProfilerMovableViewController.h"
 
+static UIEdgeInsets FBSafeAreaInsets(UIView *view) {
+#if defined(__IPHONE_11_0) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_11_0)
+  if (@available(iOS 11.0, *)) {
+    return view.safeAreaInsets;
+  }
+#endif
+
+  return UIEdgeInsetsZero;
+}
+
 @implementation FBMemoryProfilerContainerViewController
 {
   UIViewController<FBMemoryProfilerMovableViewController> *_presentedViewController;
@@ -22,6 +32,8 @@
   CGPoint _previousPinchingPoint;
 
   CGSize _size;
+  CGFloat _windowTop;
+  CGFloat _windowBottom;
 }
 
 - (void)viewDidLoad
@@ -57,10 +69,11 @@
                                    MIN(_size.height, CGRectGetHeight(self.view.bounds)));
 
   // Put content right under status bar, in the middle
-  CGFloat heightOffset = 20;
+  _windowTop = MAX(CGRectGetHeight([UIApplication sharedApplication].statusBarFrame), FBSafeAreaInsets(self.view).top);
+  _windowBottom = CGRectGetHeight(self.view.bounds) - FBSafeAreaInsets(self.view).bottom;
   CGFloat widthOffset = FBMemoryProfilerRoundPixelValue((CGRectGetWidth(self.view.bounds) - adjustedSize.width) / 2.0);
-
-  CGRect frame = CGRectMake(widthOffset, heightOffset, adjustedSize.width, adjustedSize.height);
+    
+  CGRect frame = CGRectMake(widthOffset, _windowTop, adjustedSize.width, adjustedSize.height);
 
   [self addChildViewController:_presentedViewController];
   _presentedViewController.view.frame = frame;
@@ -112,19 +125,19 @@
   CGFloat centerWidthOffset = FBMemoryProfilerRoundPixelValue(CGRectGetWidth(_presentedViewController.view.frame) / 2.0);
 
   // Make sure it stays on screen
-  if (center.y - centerHeightOffset < 0) {
-    center.y = centerHeightOffset;
+  if (center.y - centerHeightOffset < _windowTop) {
+    center.y = _windowTop + centerHeightOffset;
   }
-  if (center.x - centerWidthOffset < 0) {
-    center.x = centerWidthOffset;
+  if (center.x - centerWidthOffset < FBSafeAreaInsets(self.view).left) {
+    center.x = centerWidthOffset + FBSafeAreaInsets(self.view).left;
   }
 
-  CGFloat maximumY = CGRectGetHeight(self.view.bounds) -  CGRectGetHeight(_presentedViewController.view.frame);
+  CGFloat maximumY = _windowBottom -  CGRectGetHeight(_presentedViewController.view.frame);
   if (center.y - centerHeightOffset > maximumY) {
     center.y = maximumY + centerHeightOffset;
   }
 
-  CGFloat maximumX = CGRectGetWidth(self.view.bounds) - CGRectGetWidth(_presentedViewController.view.frame);
+  CGFloat maximumX = CGRectGetWidth(self.view.bounds) - FBSafeAreaInsets(self.view).right - CGRectGetWidth(_presentedViewController.view.frame);
   if (center.x - centerWidthOffset > maximumX) {
     center.x = maximumX + centerWidthOffset;
   }
