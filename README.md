@@ -79,3 +79,6 @@ Plugins are objects that conform to [FBMemoryProfilerPluggable](FBMemoryProfiler
 
 ## Contributing
 See the [CONTRIBUTING](CONTRIBUTING.md) file for how to help out.
+
+## License
+See (LICENSE)
