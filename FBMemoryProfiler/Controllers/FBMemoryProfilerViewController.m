@@ -274,12 +274,9 @@ retainCycleDetectorConfiguration:(FBObjectGraphConfiguration *)retainCycleDetect
       NSSet<NSArray<FBObjectiveCGraphElement *> *> *retainCycles =
       [detector findRetainCyclesWithMaxCycleLength:8];
 
-      // only tell plugins if we really found something
-      if ([retainCycles count] > 0) {
-        for (id<FBMemoryProfilerPluggable> plugin in _profilerOptions.plugins) {
-          if ([plugin respondsToSelector:@selector(memoryProfilerDidFindRetainCycles:)]) {
-            [plugin memoryProfilerDidFindRetainCycles:retainCycles];
-          }
+      for (id<FBMemoryProfilerPluggable> plugin in _profilerOptions.plugins) {
+        if ([plugin respondsToSelector:@selector(memoryProfilerDidFindRetainCycles:)]) {
+          [plugin memoryProfilerDidFindRetainCycles:retainCycles];
         }
       }
 
