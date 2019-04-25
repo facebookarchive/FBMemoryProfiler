@@ -16,8 +16,8 @@
 {
   if (self = [super init]) {
     _name = name;
-    _shortDescription = shortDescription;
-    _url = url;
+    _shortDescription = ([shortDescription class] != [NSNull class]) ? [shortDescription copy] : @"No Description";
+    _url = [url copy];
   }
   
   return self;
