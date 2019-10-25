@@ -7,7 +7,7 @@ An iOS library providing developer tools for browsing objects in memory over tim
 
 ## About
 
-This library shows how `FBAllocationTracker` and `FBRetainCycleDetector` can cooperate together, and how they can be used in real app.
+This library shows how `FBAllocationTracker` and `FBRetainCycleDetector` can cooperate Together, and how they can be used in real app.
 
 It uses [FBAllocationTracker](https://github.com/facebook/FBAllocationTracker) to gather information about the objects. 
 It supports [generations](https://github.com/facebook/FBAllocationTracker#generations) and [retain cycle detection](https://github.com/facebook/FBRetainCycleDetector).
@@ -73,14 +73,14 @@ _memoryProfiler = [[FBMemoryProfiler alloc] initWithPlugins:@[[IncredibleCacheCl
                                                               [AwesomeLoggerPlugin new]]
                            retainCycleDetectorConfiguration:someConfigurationWithCustomFilters];
 [_memoryProfiler enable];
-```
 
-## Plugins
+
+##Plugins
 
 Plugins are objects that conform to [FBMemoryProfilerPluggable](FBMemoryProfiler/Options/FBMemoryProfilerPluggable.h) protocol. Example usage: [custom cache cleaners](Example/ExampleApp/CacheCleanerPlugin.h), [loggers that log data to server](Example/ExampleApp/RetainCycleLoggerPlugin.h).
 
 ## Contributing
-See the [CONTRIBUTING](CONTRIBUTING.md) file for how to help out.
+See the CONTRIBUTING](CONTRIBUTING.md) file for how to help out.
 
 ## License
-See (LICENSE)
+See(LICENSE)
