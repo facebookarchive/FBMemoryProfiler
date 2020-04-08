@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "FBMemoryProfilerPresenting.h"
+#import <FBMemoryProfiler/FBMemoryProfilerPresenting.h>
 
 /**
  FBMemoryProfilerPluggable describes plugin for memory profiler. Whenever we want to support
