@@ -16,7 +16,7 @@ FOUNDATION_EXPORT const unsigned char FBMemoryProfilerVersionString[];
 
 #import <UIKit/UIKit.h>
 
-#import "FBMemoryProfilerPluggable.h"
+#import <FBMemoryProfiler/FBMemoryProfilerPluggable.h>
 #import "FBMemoryProfilerPresentationModeDelegate.h"
 
 #import <FBRetainCycleDetector/FBObjectGraphConfiguration.h>
